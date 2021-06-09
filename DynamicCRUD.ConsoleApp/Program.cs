@@ -26,19 +26,19 @@ namespace DynamicCRUD.ConsoleApp
                             new MetadataProperty
                             {
                                 Name = "Id",
-                                Type = "Guid",
+                                Type = "System.Guid",
                                 ColumnName = "Id"
                             },
                             new MetadataProperty
                             {
                                 Name = "OrganizationName",
-                                Type = "String",
+                                Type = "System.String",
                                 ColumnName = "OrganizationName"
                             },
                             new MetadataProperty
                             {
                                 Name = "Address",
-                                Type = "String",
+                                Type = "System.String",
                                 ColumnName = "Address"
                             }
                         }

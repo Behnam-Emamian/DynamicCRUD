@@ -54,22 +54,7 @@ namespace DynamicCRUD.Data
                     var metadataProps = new Dictionary<string, Type>();
                     foreach (var metaDataEntityProp in metadataEntity.Properties.Where(p => !p.IsNavigation))
                     {
-                        // TODO YASIN datetime vb eklenebilir.
-                        switch (metaDataEntityProp.Type)
-                        {
-                            case "String":
-                                metadataProps.Add(metaDataEntityProp.Name, typeof(string));
-                                break;
-                            case "Int":
-                                metadataProps.Add(metaDataEntityProp.Name, typeof(int));
-                                break;
-                            case "Guid":
-                                metadataProps.Add(metaDataEntityProp.Name, typeof(Guid));
-                                break;
-                            default:
-                                //Implement for Other types
-                                break;
-                        }
+                        metadataProps.Add(metaDataEntityProp.Name, Type.GetType(metaDataEntityProp.Type));
                     }
 
                     var entityTypeBuilder = dynamicClassFactory.CreateDynamicTypeBuilder<DynamicEntity>(metadataEntity.Name, metadataProps);
