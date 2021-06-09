@@ -105,6 +105,7 @@ namespace DynamicCRUD.Emit
             //creates the Set Method for the property and also adds the invocation of the property change
             propertyBuilder.SetSetMethod(CreateSetMethodForTypeBuilder(typeBuilder, getterAndSetterAttributes, name, type, fieldBuilder, raisePropertyChanged));
         }
+
         private void CreateFieldForType(Type type, String name, MethodInfo raisePropertyChanged)
         {
             FieldBuilder fieldBuilder = _typeBuilder.DefineField("_" + name.ToLowerInvariant(), type, FieldAttributes.Private);
@@ -128,7 +129,6 @@ namespace DynamicCRUD.Emit
             var attr = new CustomAttributeBuilder(attrType.GetConstructor(Type.EmptyTypes), new object[] { });
             propertyBuilder.SetCustomAttribute(attr);
         }
-
 
         private MethodBuilder CreateGetMethod(MethodAttributes attr, string name, Type type, FieldBuilder fieldBuilder)
         {

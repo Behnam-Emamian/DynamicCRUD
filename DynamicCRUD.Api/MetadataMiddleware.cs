@@ -22,7 +22,7 @@ namespace DynamicCRUD.Api
 
         public async Task Invoke(
             HttpContext context,
-            MetadataHolder metadataHolder,
+            MetadataConfig metadataHolder,
             TContext dbContext)
         {
             var metadataHolderFromJson = new
@@ -35,21 +35,21 @@ namespace DynamicCRUD.Api
                         Name = "ServiceProvider",
                         TableName = "ServiceProvider",
                         SchemaName = "dbo",
-                        Properties = new List<MetadataEntityProperty>
+                        Properties = new List<MetadataProperty>
                         {
-                            new MetadataEntityProperty
+                            new MetadataProperty
                             {
                                 Name = "Id",
                                 Type = "Guid",
                                 ColumnName = "Id"
                             },
-                            new MetadataEntityProperty
+                            new MetadataProperty
                             {
                                 Name = "OrganizationName",
                                 Type = "String",
                                 ColumnName = "OrganizationName"
                             },
-                            new MetadataEntityProperty
+                            new MetadataProperty
                             {
                                 Name = "Address",
                                 Type = "String",
@@ -99,16 +99,9 @@ namespace DynamicCRUD.Api
                                 break;
                         }
                     }
-                    if (string.IsNullOrEmpty(metadataEntity.CustomAssemblyType))
-                    {
-                        var entityTypeBuilder = dynamicClassFactory.CreateDynamicTypeBuilder<DynamicEntity>(metadataEntity.Name, metadataProps);
 
-                        entityTypeBuilderList.Add(metadataEntity.Name, entityTypeBuilder);
-                    }
-
-                    else
-                        metadataEntity.EntityType = Type.GetType(metadataEntity.CustomAssemblyType);
-
+                    var entityTypeBuilder = dynamicClassFactory.CreateDynamicTypeBuilder<DynamicEntity>(metadataEntity.Name, metadataProps);
+                    entityTypeBuilderList.Add(metadataEntity.Name, entityTypeBuilder);
 
                     metadataHolder.Entities.Add(metadataEntity);
                 }

@@ -22,7 +22,7 @@ namespace DynamicCRUD.Api
                 options.ReplaceService<IModelCacheKeyFactory, CustomModelCacheKeyFactory>();
             });
 
-            services.AddScoped<MetadataHolder>();
+            services.AddScoped<MetadataConfig>();
 
         }
 

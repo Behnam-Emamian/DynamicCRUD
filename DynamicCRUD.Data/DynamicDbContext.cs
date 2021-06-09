@@ -37,7 +37,7 @@ namespace DynamicCRUD.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public void SetMetadataHolder(MetadataHolder metadataHolder)
+        public void SetMetadataHolder(MetadataConfig metadataHolder)
         {
             if (metadataHolder == null)
                 throw new NullReferenceException("Metadata load failed.");
@@ -72,15 +72,8 @@ namespace DynamicCRUD.Data
                         }
                     }
 
-                    if (string.IsNullOrEmpty(metadataEntity.CustomAssemblyType))
-                    {
-                        var entityTypeBuilder = dynamicClassFactory.CreateDynamicTypeBuilder<DynamicEntity>(metadataEntity.Name, metadataProps);
-                        entityTypeBuilderList.Add(metadataEntity.Name, entityTypeBuilder);
-                    }
-                    else
-                    {
-                        metadataEntity.EntityType = Type.GetType(metadataEntity.CustomAssemblyType);
-                    }
+                    var entityTypeBuilder = dynamicClassFactory.CreateDynamicTypeBuilder<DynamicEntity>(metadataEntity.Name, metadataProps);
+                    entityTypeBuilderList.Add(metadataEntity.Name, entityTypeBuilder);
 
                     MetadataEntities.Add(metadataEntity);
                 }

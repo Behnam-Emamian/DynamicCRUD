@@ -1,6 +1,6 @@
 ﻿namespace DynamicCRUD.Metadata
 {
-    public class MetadataEntityProperty
+    public class MetadataProperty
     {
         public string Name { get; set; }
 

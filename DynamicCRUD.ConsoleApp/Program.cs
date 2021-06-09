@@ -11,7 +11,7 @@ namespace DynamicCRUD.ConsoleApp
 {
     class Program
     {
-        private readonly static MetadataHolder metadataHolderFromJson = new MetadataHolder
+        private readonly static MetadataConfig metadataHolderFromJson = new MetadataConfig
         {
             Version = "1",
             Entities = new List<MetadataEntity>
@@ -21,21 +21,21 @@ namespace DynamicCRUD.ConsoleApp
                         Name = "ServiceProvider",
                         TableName = "ServiceProvider",
                         SchemaName = "dbo",
-                        Properties = new List<MetadataEntityProperty>
+                        Properties = new List<MetadataProperty>
                         {
-                            new MetadataEntityProperty
+                            new MetadataProperty
                             {
                                 Name = "Id",
                                 Type = "Guid",
                                 ColumnName = "Id"
                             },
-                            new MetadataEntityProperty
+                            new MetadataProperty
                             {
                                 Name = "OrganizationName",
                                 Type = "String",
                                 ColumnName = "OrganizationName"
                             },
-                            new MetadataEntityProperty
+                            new MetadataProperty
                             {
                                 Name = "Address",
                                 Type = "String",

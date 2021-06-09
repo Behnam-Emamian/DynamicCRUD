@@ -13,12 +13,6 @@ namespace DynamicCRUD.Metadata
 
         public Type EntityType { get; set; }
 
-        public List<MetadataEntityProperty> Properties { get; set; }
-
-        public string CustomAssemblyType { get; set; }
-
-        public string CustomServiceAssemblyType { get; set; }
-
-        public bool CustomSelect { get; set; }
+        public List<MetadataProperty> Properties { get; set; }
     }
 }
