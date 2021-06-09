@@ -1,4 +1,5 @@
 using DynamicCRUD.Data;
+using DynamicCRUD.Metadata;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,6 +22,7 @@ namespace DynamicCRUD.Api
                 options.ReplaceService<IModelCacheKeyFactory, CustomModelCacheKeyFactory>();
             });
 
+            services.AddScoped<MetadataHolder>();
 
         }
 

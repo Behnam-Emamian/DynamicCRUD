@@ -11,7 +11,7 @@ namespace DynamicCRUD.Metadata
 
         public string SchemaName { get; set; }
 
-        public Type EntityType { get; set; } 
+        public Type EntityType { get; set; }
 
         public List<MetadataEntityProperty> Properties { get; set; }
 

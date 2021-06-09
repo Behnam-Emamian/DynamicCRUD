@@ -25,7 +25,40 @@ namespace DynamicCRUD.Api
             MetadataHolder metadataHolder,
             TContext dbContext)
         {
-            var metadataHolderFromJson = new { Version = "", Entities = new List<MetadataEntity>() }; ///LOAD your metadata from cache   await _distributedCacheService.GetAsync<MetadataHolder>("MetadataJson");
+            var metadataHolderFromJson = new
+            {
+                Version = "1",
+                Entities = new List<MetadataEntity>
+                {
+                    new MetadataEntity
+                    {
+                        Name = "ServiceProvider",
+                        TableName = "ServiceProvider",
+                        SchemaName = "dbo",
+                        Properties = new List<MetadataEntityProperty>
+                        {
+                            new MetadataEntityProperty
+                            {
+                                Name = "Id",
+                                Type = "Guid",
+                                ColumnName = "Id"
+                            },
+                            new MetadataEntityProperty
+                            {
+                                Name = "OrganizationName",
+                                Type = "String",
+                                ColumnName = "OrganizationName"
+                            },
+                            new MetadataEntityProperty
+                            {
+                                Name = "Address",
+                                Type = "String",
+                                ColumnName = "Address"
+                            }
+                        }
+                    }
+                }
+            }; ///LOAD your metadata from cache   await _distributedCacheService.GetAsync<MetadataHolder>("MetadataJson");
 
             if (metadataHolderFromJson == null)
                 throw new NullReferenceException("MetadataJson load failed.");
@@ -108,10 +141,9 @@ namespace DynamicCRUD.Api
                 }
             }
 
-            foreach (var metaDataEntity in metadataHolder.Entities)
-                dbContext.AddMetadata(metaDataEntity);
+            dbContext.MetadataEntities = metadataHolder.Entities;
 
-            dbContext.SetContextVersion(metadataHolder.Version);
+            dbContext.Version = metadataHolder.Version;
 
             await _next.Invoke(context);
         }

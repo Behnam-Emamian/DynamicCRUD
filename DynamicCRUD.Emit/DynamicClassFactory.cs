@@ -10,11 +10,11 @@ namespace DynamicCRUD.Emit
 {
     public class DynamicClassFactory
     {
-        private AppDomain _appDomain;
+        private readonly AppDomain _appDomain;
         private AssemblyBuilder _assemblyBuilder;
         private ModuleBuilder _moduleBuilder;
         private TypeBuilder _typeBuilder;
-        private string _assemblyName;
+        private readonly string _assemblyName;
 
         public DynamicClassFactory() : this("Dynamic.Objects")
         {
@@ -80,9 +80,6 @@ namespace DynamicCRUD.Emit
 
             return _typeBuilder;
         }
-
-
-
 
         public void CreateProperties(Dictionary<string, Type> properties, MethodInfo raisePropertyChanged)
         {
